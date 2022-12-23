@@ -19,18 +19,19 @@ function handleFormInput(event){
 };
 
 function handlerFormSubmit(event){
-    console.log(JSON.parce(localStorage.getItem(FEEDBACK_FORM)));
     event.preventDefault();
-    formEl.reset();
+    console.log(JSON.parse(localStorage.getItem(FEEDBACK_FORM)));
     localStorage.removeItem(FEEDBACK_FORM);
+    formEl.reset();
 }
 
 function populateTextarea(){
-    if(JSON.parse(localStorage.getItem(FEEDBACK_FORM)) === null){
+    let savedMassage = JSON.parse(localStorage.getItem(FEEDBACK_FORM)) || {};
+    if(savedMassage === null){
         return
     }
-    refs.message.value = JSON.parse(localStorage.getItem(FEEDBACK_FORM)).message || '' ;
-    refs.email.value = JSON.parse(localStorage.getItem(FEEDBACK_FORM)).email || '';
+    refs.message.value = savedMassage.message || '' ;
+    refs.email.value = savedMassage.email || '';
 }
 populateTextarea();
  
