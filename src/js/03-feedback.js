@@ -22,19 +22,15 @@ function handlerFormSubmit(event){
     event.preventDefault();
     console.log(JSON.parse(localStorage.getItem(FEEDBACK_FORM)));
     localStorage.removeItem(FEEDBACK_FORM);
+    formData = {};
     formEl.reset();
 }
 
 function populateTextarea(){
     let savedMassage = JSON.parse(localStorage.getItem(FEEDBACK_FORM)) || {};
     formData = savedMassage;
-    if(savedMassage === null){
-        return
-    }
     refs.message.value = savedMassage.message || '' ;
     refs.email.value = savedMassage.email || '';
-
-
 }
 populateTextarea();
  
