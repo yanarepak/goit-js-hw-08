@@ -11,7 +11,7 @@ const FEEDBACK_FORM = "feedback-form-state"
 formEl.addEventListener('input', throttle(handleFormInput, 500)); 
 formEl.addEventListener('submit', handlerFormSubmit);
 
-const formData = {};
+let formData = {};
 
 function handleFormInput(event){
     formData[event.target.name] = event.target.value;
@@ -27,11 +27,14 @@ function handlerFormSubmit(event){
 
 function populateTextarea(){
     let savedMassage = JSON.parse(localStorage.getItem(FEEDBACK_FORM)) || {};
+    formData = savedMassage;
     if(savedMassage === null){
         return
     }
     refs.message.value = savedMassage.message || '' ;
     refs.email.value = savedMassage.email || '';
+
+
 }
 populateTextarea();
  
